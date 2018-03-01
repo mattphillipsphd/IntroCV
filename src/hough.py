@@ -12,7 +12,9 @@ pj = os.path.join
 
 def main(args):
     img_dir = pj( ut.get_repo_dir(), "data/hough" )
-    img = cv2.imread(
+    img = cv2.imread(pj(img_dir, args.image_file))
+    edges = ut.detect_edges(img)
+
 
 
 if __name__ == "__main__":
