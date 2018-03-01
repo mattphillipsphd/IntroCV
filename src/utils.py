@@ -4,6 +4,9 @@ Simple utilities
 
 import cv2
 import json
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 import numpy as np
 import os
 import sys
@@ -37,6 +40,20 @@ def get_repo_dir():
         raise RuntimeError("local_cfg.json file not present")
     cfg = json.load( open(cfg_path) )
     return cfg["repo_dir"]
+
+
+def make_heatmap(X, Y, fn, bins=(64,64), xlabel="x", ylabel="y"):
+    heatmap, xedges, yedges = np.histogram2d(X, Y, bins=bins)
+    extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+     
+    # Plot heatmap
+    plt.clf()
+    plt.ylabel(xlabel)
+    plt.xlabel(ylabel)
+    plt.imshow(heatmap, extent=extent, origin="lower")
+    ax = plt.gca()
+    ax.set_aspect("equal", "box")
+    plt.savefig(fn)
 
 
 # Aspect ratio is preserved and the image is not cropped.  
