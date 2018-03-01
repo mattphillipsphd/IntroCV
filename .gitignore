@@ -1,2 +1,6 @@
 **/*.sw[klmnop]
+**/*.jpg
+**/*.pyc
+
+src/__pycache__/*
 
