@@ -2,5 +2,8 @@
 **/*.jpg
 **/*.pyc
 
+out/hough/*.png
+
+
 src/__pycache__/*
 
