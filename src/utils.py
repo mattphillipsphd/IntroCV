@@ -3,6 +3,7 @@ Simple utilities
 """
 
 import cv2
+import json
 import numpy as np
 import os
 import sys
@@ -10,9 +11,15 @@ import sys
 pe = os.path.exists
 pj = os.path.join
 
-def get_script_path():
-    return os.path.dirname(os.path.realpath(sys.argv[0]))
-g_repo_dir = os.path.dirname( get_script_path() )
+def get_repo_dir():
+    if pe("local_cfg.json"):
+        cfg_path = "local_cfg.json"
+    elif pe("../local_cfg.json"):
+        cfg_path = "../local_cfg.json"
+    else:
+        raise RuntimeError("local_cfg.json file not present")
+    cfg = json.load( open(cfg_path) )
+    return cfg["repo_dir"]
 
 # Aspect ratio is preserved and the image is not cropped.  
 # new_size: The size of the shortest dimension of the new image, in pixels
