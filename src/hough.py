@@ -49,7 +49,7 @@ def hough_lines(edged, img, img_fn):
 
 
 def hough_lines_p(edged, img, img_fn):
-    lines = cv2.HoughLinesP(edged, 1, np.pi/180, 100, 10, 10)
+    lines = cv2.HoughLinesP(edged, 1, np.pi/180, 100, 50, 10)
     if lines is not None:
         for line in lines:
             x1,y1,x2,y2 = line[0]
@@ -69,7 +69,7 @@ def hough_circles(bw, img, img_fn):
             bw, 
             cv2.HOUGH_GRADIENT, 
             1,              # accumulator resolution (ratio)
-            1,              # separation between lines--concentric circles are \
+            5,              # separation between lines--concentric circles are \
                                 # tricky!
             param1=100,     # upper Canny threshold
             param2=50,      # unnormalized accumulator threshold
