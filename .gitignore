@@ -1,6 +1,7 @@
 **/*.sw[klmnop]
 **/*.jpg
 **/*.pyc
+**/*.egg-info
 
 out/hough/*.png
 

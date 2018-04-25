@@ -6,7 +6,7 @@ import argparse
 import cv2
 import numpy as np
 import os
-import utils as ut
+import introcv.utils as ut
 
 pe = os.path.exists
 pj = os.path.join
