@@ -16,8 +16,11 @@ def main(args):
     imgL = cv2.imread( pj(args.directory, "imL.png"), cv2.IMREAD_GRAYSCALE)
     imgR = cv2.imread( pj(args.directory, "imR.png"), cv2.IMREAD_GRAYSCALE)
 
-    stereo = cv2.StereoBM_create(numDisparities=args.num_disparities,
-            blockSize=args.block_size)
+    cv2.imwrite(pj(args.directory, "imL_gray.png"), imgL)
+    cv2.imwrite(pj(args.directory, "imR_gray.png"), imgL)
+
+    stereo = cv2.StereoSGBM_create(numDisparities=args.num_disparities,
+            blockSize=args.block_size, mode=1, P1=1024//8, P2=4096//8)
     disparity = stereo.compute(imgL,imgR)
     plt.imshow(disparity,'gray')
     plt.show()
